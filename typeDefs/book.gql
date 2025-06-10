@@ -1,0 +1,37 @@
+# interface Book {
+#   title: String
+#   author: String
+# }
+# type TextBook implements Book {
+#   id: ID
+#   title: String
+#   author: String
+# }
+# type MangaBook implements Book {
+#   title: String
+#   author: String
+# }
+
+type TextBook {
+  id: ID
+  title: String
+  author: String
+}
+type MangaBook  {
+  title: String
+  author: String
+}
+union Book = TextBook | MangaBook
+
+type Message {
+  message: String
+}
+
+type Query {
+  books: [Book]
+  findBookById(id: ID): Book
+}
+
+type Mutation {
+  deleteBookById(id: ID): Message
+}

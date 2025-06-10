@@ -1,0 +1,21 @@
+type Author {
+  id: ID!
+  name: String!
+  nationality: String
+  birthYear: Int
+}
+
+type Message {
+  message: String!
+}
+
+type Query {
+  authors: [Author!]!
+  findAuthorById(id: ID!): Author
+}
+
+type Mutation {
+  addAuthor(name: String!, nationality: String, birthYear: Int): Author!
+  updateAuthor(id: ID!, name: String, nationality: String, birthYear: Int): Author!
+  deleteAuthorById(id: ID!): Message!
+}
