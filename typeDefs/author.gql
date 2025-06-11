@@ -24,7 +24,7 @@
 interface Author {
   id: ID!
   name: String!
-    nationality: String
+  nationality: String
   birthYear: Int
 }
 
@@ -61,9 +61,26 @@ type Query {
   findMangakaById(id: ID!): Mangaka
 }
 
+input CreateAuthorInput {
+  name: String!
+  nationality: String
+  birthYear: Int
+  isMangaka: Boolean!
+}
 # Mutations
 type Mutation {
-  addAuthor(name: String!, nationality: String, birthYear: Int, isMangaka: Boolean!): AnyAuthor!
-  updateAuthor(id: ID!, name: String, nationality: String, birthYear: Int): AnyAuthor!
+  addAuthor(
+    data: CreateAuthorInput
+    # name: String!
+    # nationality: String
+    # birthYear: Int
+    # isMangaka: Boolean!
+  ): AnyAuthor!
+  updateAuthor(
+    id: ID!
+    name: String
+    nationality: String
+    birthYear: Int
+  ): AnyAuthor!
   deleteAuthorById(id: ID!): Message!
 }

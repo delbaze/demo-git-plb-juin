@@ -19,12 +19,12 @@ type Demo {
 type TextBook {
   id: ID
   title: String
-  author: String
+  author: AnyAuthor
   demo: Demo
 }
 type MangaBook  {
   title: String
-  author: String
+  author: AnyAuthor
   demo: Demo
 }
 union Book = TextBook | MangaBook

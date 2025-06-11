@@ -1,4 +1,4 @@
-let authors = [
+export let authors = [
   {
     id: "A1",
     name: "Kate Chopin",
@@ -54,13 +54,13 @@ export default {
     },
   },
   Mutation: {
-    addAuthor: (_: any, args: any) => {
+    addAuthor: (_: any, {data}: any) => {
       const newAuthor = {
         id: `A${Date.now()}`, // Génération simple d'un ID
-        name: args.name,
-        nationality: args.nationality,
-        birthYear: args.birthYear,
-        ...(args.isMangaka
+        name: data.name,
+        nationality: data.nationality,
+        birthYear: data.birthYear,
+        ...(data.isMangaka
           ? { mangas: ["Nouveau Manga"] }
           : { novels: ["Nouveau Roman"] }),
       };
