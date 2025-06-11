@@ -32,7 +32,11 @@ export default {
       }
       return author;
     },
-    findNovelistById: (_: any, args: any) => {
+    findNovelistById: (_: any, args: any, ctx: any) => {
+      console.log("ctx", ctx);
+      if (!ctx.user) {
+        throw new Error("Vous devez être authentifié");
+      }
       const author = authors.find((a) => a.id === args.id);
       if (!author) {
         throw new Error("L'auteur n'existe pas");
@@ -54,7 +58,7 @@ export default {
     },
   },
   Mutation: {
-    addAuthor: (_: any, {data}: any) => {
+    addAuthor: (_: any, { data }: any) => {
       const newAuthor = {
         id: `A${Date.now()}`, // Génération simple d'un ID
         name: data.name,

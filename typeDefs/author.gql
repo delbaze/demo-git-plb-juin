@@ -21,6 +21,9 @@
 # }
 
 # Interface pour les propriétés communes des auteurs
+directive @upper on FIELD_DEFINITION 
+
+
 interface Author {
   id: ID!
   name: String!
@@ -31,7 +34,7 @@ interface Author {
 # Types spécifiques implémentant l'interface Author
 type Novelist implements Author {
   id: ID!
-  name: String!
+  name: String! @upper
   nationality: String
   birthYear: Int
   novels: [String!]!
