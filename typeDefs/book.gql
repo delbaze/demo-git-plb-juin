@@ -12,14 +12,20 @@
 #   author: String
 # }
 
+type Demo {
+  name: String
+  age: Int
+}
 type TextBook {
   id: ID
   title: String
   author: String
+  demo: Demo
 }
 type MangaBook  {
   title: String
   author: String
+  demo: Demo
 }
 union Book = TextBook | MangaBook
 

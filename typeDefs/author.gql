@@ -1,21 +1,69 @@
-type Author {
+# type Author {
+#   id: ID!
+#   name: String!
+#   nationality: String
+#   birthYear: Int
+# }
+
+# type Message {
+#   message: String!
+# }
+
+# type Query {
+#   authors: [Author!]!
+#   findAuthorById(id: ID!): Author
+# }
+
+# type Mutation {
+#   addAuthor(name: String!, nationality: String, birthYear: Int): Author!
+#   updateAuthor(id: ID!, name: String, nationality: String, birthYear: Int): Author!
+#   deleteAuthorById(id: ID!): Message!
+# }
+
+# Interface pour les propriétés communes des auteurs
+interface Author {
+  id: ID!
+  name: String!
+    nationality: String
+  birthYear: Int
+}
+
+# Types spécifiques implémentant l'interface Author
+type Novelist implements Author {
   id: ID!
   name: String!
   nationality: String
   birthYear: Int
+  novels: [String!]!
 }
 
+type Mangaka implements Author {
+  id: ID!
+  name: String!
+  nationality: String
+  birthYear: Int
+  mangas: [String!]!
+}
+
+# Union pour regrouper différents types d'auteurs
+union AnyAuthor = Novelist | Mangaka
+
+# Type Message pour les retours de mutation
 type Message {
   message: String!
 }
 
+# Requêtes
 type Query {
-  authors: [Author!]!
-  findAuthorById(id: ID!): Author
+  authors: [AnyAuthor!]!
+  findAuthorById(id: ID!): AnyAuthor
+  findNovelistById(id: ID!): Novelist
+  findMangakaById(id: ID!): Mangaka
 }
 
+# Mutations
 type Mutation {
-  addAuthor(name: String!, nationality: String, birthYear: Int): Author!
-  updateAuthor(id: ID!, name: String, nationality: String, birthYear: Int): Author!
+  addAuthor(name: String!, nationality: String, birthYear: Int, isMangaka: Boolean!): AnyAuthor!
+  updateAuthor(id: ID!, name: String, nationality: String, birthYear: Int): AnyAuthor!
   deleteAuthorById(id: ID!): Message!
 }
